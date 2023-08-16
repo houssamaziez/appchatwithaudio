@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820487335166",
+    "project_id": "soaodi",
+    "storage_bucket": "soaodi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820487335166:android:7a6fa39dfedfe49ae2c9af",
+        "android_client_info": {
+          "package_name": "com.example.flutter_30_tips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820487335166-9tav4rv8edd4b74fvf738edt7o39g99c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0ZMCZlGViGrYUsi566rn2yj8cQ-knEcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820487335166-9tav4rv8edd4b74fvf738edt7o39g99c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
