@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_30_tips/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -62,8 +63,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   void onSendMessage(String content, int type, {String? duration = ""}) {
     if (content.trim().isNotEmpty) {
       messageController.clear();
-      chatProvider.sendMessage(
-          content, type, groupChatId, currentUserId, widget.data.id.toString(),
+      chatProvider.sendMessage(content, type, groupChatId, currentUserId,
+          widget.data.id.toString(), [userDataall.uid, "1234"],
           duration: duration!);
       _scrollController.animateTo(0,
           duration: Duration(milliseconds: 300), curve: Curves.easeOut);

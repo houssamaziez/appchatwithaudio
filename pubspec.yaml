@@ -33,6 +33,7 @@ dependencies:
   breathing_collection: ^1.0.0+3
   cloud_firestore: ^4.8.4
   cupertino_icons: ^1.0.2 
+  firebase_auth: ^4.7.3
   firebase_core: ^2.15.0
   firebase_storage: ^11.2.5
   flutter_bloc: ^8.1.3

@@ -42,20 +42,19 @@ class ChatProvider extends GetxController {
   }
 
   void sendMessage(String content, int type, String groupChatId,
-      String currentUserId, String peerId,
+      String currentUserId, String peerId, List<String> listid,
       {String duration = ""}) {
     DateTime now = DateTime.now();
 
     DocumentReference documentReference = firebaseFirestore
         .collection('messages')
-        .doc(groupChatId)
-        .collection(groupChatId)
         .doc(
             "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}");
 
     MessageChat messageChat = MessageChat(
         idFrom: currentUserId,
         idTo: peerId,
+        listid: listid,
         timestamp: Timestamp.now(),
         content: content,
         type: type,
@@ -83,10 +82,12 @@ class MessageChat {
   String content;
   int type;
   String? duration;
+  List<String> listid;
 
   MessageChat(
       {required this.idFrom,
       required this.idTo,
+      required this.listid,
       required this.timestamp,
       required this.content,
       required this.type,
@@ -109,10 +110,12 @@ class MessageChat {
     Timestamp timestamp = doc.get('timestamp');
     String content = doc.get('content');
     int type = doc.get('type');
+    List<String> listid = doc.get('listid');
     String duration = doc.get('duration');
     return MessageChat(
         idFrom: idFrom,
         idTo: idTo,
+        listid: listid,
         duration: duration,
         timestamp: timestamp,
         content: content,

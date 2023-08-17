@@ -17,6 +17,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:record_mp3/record_mp3.dart';
 import 'package:voice_message_package/voice_message_package.dart';
 import '../home.dart';
+import '../models/user.dart';
 import '../tips2/chatController.dart';
 
 class VoiceChat extends StatefulWidget {
@@ -152,8 +153,8 @@ class _VoiceChatState extends State<VoiceChat> {
   void onSendMessage(String content, int type, {String? duration = ""}) {
     if (content.trim().isNotEmpty) {
       messageController.clear();
-      chatProvider.sendMessage(
-          content, type, groupChatId, currentUserId, widget.data.id.toString(),
+      chatProvider.sendMessage(content, type, groupChatId, currentUserId,
+          widget.data.id.toString(), [userDataall.uid, "1234"],
           duration: duration!);
       _scrollController.animateTo(0,
           duration: Duration(milliseconds: 300), curve: Curves.easeOut);
@@ -350,27 +351,84 @@ class _VoiceChatState extends State<VoiceChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: customAppBar(widget.data['name']),
+      // appBar: customAppBar(widget.data['name']),
       body: Stack(
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              buildListMessage(),
-              issendmsg
-                  ? Padding(
-                      padding: const EdgeInsets.only(right: 20),
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            color: const Color.fromARGB(255, 164, 214, 255),
+            child: Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back_ios_new_outlined)),
+                    Container(
+                        child: ClipRRect(
+                      borderRadius: BorderRadius.circular(1000.0),
                       child: Image.asset(
-                        "assets/typing.gif",
-                        height: 40,
+                        "assets/about.jpg",
+                        width: 30,
+                        height: 30,
                       ),
+                    )),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      'HOUSSAM EDDIE AZIEZ ',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
                     )
-                  : Container(),
-              Obx(
-                () => buildInput(),
-              )
-            ],
+                  ],
+                )
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.87,
+              child: Card(
+                elevation: 4.0, // Adds a shadow to the card
+                margin: EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(22),
+                      topRight:
+                          Radius.circular(15)), // Adjust the radius as needed
+                ),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    buildListMessage(),
+                    issendmsg
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: Image.asset(
+                              "assets/typing.gif",
+                              height: 40,
+                            ),
+                          )
+                        : Container(),
+                    Obx(
+                      () => buildInput(),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ),
           // buildLoading(),
         ],
